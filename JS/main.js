@@ -27,8 +27,9 @@ function showPage(currentPageNumber) {
 }
 showPage(1);
 
-function appendPageLinks(/* take a student list as an argument */) {
+function appendPageLinks(/* take a student list as an argument */eachStudent) {
      // determine how many pages for this student list
+     numberOfPages;
      // create a page link section
      // “for” every page
          // add a page link to the page link section
