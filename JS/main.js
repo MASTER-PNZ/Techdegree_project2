@@ -1,41 +1,33 @@
 
-//Selecting all individual student's information in the li class student-item
-//Getting the number of student-item elements
-//Setting the desired number of students to show per page
-//Setting initial page number to 0
+//Selecting all individual student's information in the li class student-item.
+//Getting the number of student-item elements.
+//Setting the desired number of students to show per page.
+//Setting initial page number to 0.
 const eachStudent = $('.student-item');
 const studentNum = eachStudent.length;
 const studentsPerPage = 10;
 var currentPageNumber = 0;
 
-// A function to show 10 students on the page, hides all student-items,
-// and shows only the first 10.
+// A function to show 10 students on the page
 function showPage(currentPageNumber) {
-    // first hide all students on the page
     eachStudent.hide();
-    // Then loop through all students in our student list argument
     eachStudent.each(function(index){
-      // if student should be on this page number
       if (index >= studentsPerPage * (currentPageNumber - 1)
-         && index < studentsPerPage * currentPageNumber) {
-        // show the student
+      && index < studentsPerPage * currentPageNumber) {
         $(this).show();
       };
     });
 }
 
+// A function to dynamically add page links to the index.html file
 
-function appendPageLinks(/* take a student list as an argument */) {
-     // determine how many pages for this student list
+function appendPageLinks() {
+     //Calculates number of pages needed given number of students in list.
      var numberOfPages = Math.ceil(studentNum / studentsPerPage);
-     // create a page link section
      $('.page').append('<div class="pagination"><ul></ul></div>');
-     // “for” every page
      for (currentPageNumber; currentPageNumber < numberOfPages; currentPageNumber += 1) {
-         // add a page link to the page link section
          if (currentPageNumber == 0) {
-           $('.pagination')
-           .append(
+           $('.pagination').append(
              '<li><a class="active" href="#">' +
              (currentPageNumber + 1) + '</a></li>');
          } else {
@@ -44,18 +36,15 @@ function appendPageLinks(/* take a student list as an argument */) {
            (currentPageNumber + 1) + '</a></li>');
          }
      };
+      // Show the first page of students with the first page link active.
       showPage(1);
-     // remove the old page link section from the site
-
-     // append our new page link section to the site
-
-     // define what happens when you click a link
+      // A click handler that targets the page links and adds or removes the
+      // 'active' class depending on the current page.
+      // Calls the showPage function and passes the currentPageNumber as an argument.
      $('.pagination li a').on('click', function(){
        $('.pagination li a').removeClass('active');
            $(this).addClass('active');
            showPage(parseInt($(this).html()));
-          // Use the showPage function to display the page for the link clicked
-         // mark that link as “active”
      });
  }
 appendPageLinks();
