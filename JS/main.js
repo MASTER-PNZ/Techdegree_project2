@@ -51,8 +51,8 @@ function appendPageLinks(/* take a student list as an argument */) {
 
      // define what happens when you click a link
      $('.pagination li a').on('click', function(){
-       $('.pagination li a').removeClass('.active');
-           $(this).addClass('.active');
+       $('.pagination li a').removeClass('active');
+           $(this).addClass('active');
            showPage(parseInt($(this).html()));
           // Use the showPage function to display the page for the link clicked
          // mark that link as “active”
